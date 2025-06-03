@@ -208,28 +208,25 @@ class Character extends GameObject {
      * Applies transformations like rotation, mirroring, and spinning.
      */
     applyTransformations(directionData) {
-        if (directionData.rotate || directionData.mirror || directionData.spin) {
-            // Translate to the center of the sprite
-            this.ctx.translate(this.canvas.width / 2, this.canvas.height / 2);
-
-            // Apply rotation
-            if (directionData.rotate) {
-                this.ctx.rotate(directionData.rotate);
-            }
-
-            // Apply mirroring
-            if (directionData.mirror) {
-                this.ctx.scale(-1, 1); // Flip horizontally
-            }
-
-            // Apply spinning
-            if (directionData.spin) {
-                this.ctx.rotate(Math.PI / Math.floor(Math.random() * directionData.spin + 1));
-            }
-
-            // Translate back to the upper-left corner
-            this.ctx.translate(-this.canvas.width / 2, -this.canvas.height / 2);
+        this.ctx.setTransform(1, 0, 0, 1, 0, 0); // Reset transformations
+        this.ctx.translate(this.canvas.width / 2, this.canvas.height / 2);
+    
+        // Flip for left direction
+        if (this.direction === 'right') {
+            this.ctx.scale(-1, 1); // flip horizontally
         }
+    
+        // Apply extra rotation if defined
+        if (directionData.rotate) {
+            this.ctx.rotate(directionData.rotate);
+        }
+    
+        // Extra effects
+        if (directionData.spin) {
+            this.ctx.rotate(Math.PI / Math.floor(Math.random() * directionData.spin + 1));
+        }
+    
+        this.ctx.translate(-this.canvas.width / 2, -this.canvas.height / 2);
     }
 
     /**

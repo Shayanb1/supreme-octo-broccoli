@@ -28,29 +28,30 @@ class GameLevelDesert {
 
 
     // Player data for Chillguy
-    const sprite_src_chillguy = path + "/images/gamify/chillguy.png"; // be sure to include the path
-    const CHILLGUY_SCALE_FACTOR = 5;
-    const sprite_data_chillguy = {
-        id: 'Chill Guy',
-        greeting: "Hi I am Chill Guy, the desert wanderer. I am looking for wisdom and adventure!",
-        src: sprite_src_chillguy,
-        SCALE_FACTOR: CHILLGUY_SCALE_FACTOR,
-        STEP_FACTOR: 1000,
-        ANIMATION_RATE: 50,
-        INIT_POSITION: { x: 0, y: height - (height/CHILLGUY_SCALE_FACTOR) }, 
-        pixels: {height: 384, width: 512},
-        orientation: {rows: 3, columns: 4 },
-        down: {row: 0, start: 0, columns: 3 },
-        downRight: {row: 1, start: 0, columns: 3, rotate: Math.PI/16 },
-        downLeft: {row: 2, start: 0, columns: 3, rotate: -Math.PI/16 },
-        left: {row: 2, start: 0, columns: 3 },
-        right: {row: 1, start: 0, columns: 3 },
-        up: {row: 3, start: 0, columns: 3 },
-        upLeft: {row: 2, start: 0, columns: 3, rotate: Math.PI/16 },
-        upRight: {row: 1, start: 0, columns: 3, rotate: -Math.PI/16 },
-        hitbox: { widthPercentage: 0.45, heightPercentage: 0.2 },
-        keypress: { up: 87, left: 65, down: 83, right: 68 } // W, A, S, D
-    };
+const sprite_src_chillguy = path + "/images/gamify/golblin.png";
+const CHILLGUY_SCALE_FACTOR = 5;
+const sprite_data_chillguy = {
+    id: 'Chill Guy',
+    greeting: "Hi I am Chill Guy, the desert wanderer. I am looking for wisdom and adventure!",
+    src: sprite_src_chillguy,
+    SCALE_FACTOR: CHILLGUY_SCALE_FACTOR,
+    STEP_FACTOR: 1000,
+    ANIMATION_RATE: 50,
+    INIT_POSITION: { x: 0, y: height - (height / CHILLGUY_SCALE_FACTOR) },
+    pixels: { height: 770, width: 798 },
+    orientation: { rows: 1, columns: 1 },
+    down: { row: 0, start: 0, columns: 1 },
+    downRight: { row: 0, start: 0, columns: 1 },
+    downLeft: { row: 0, start: 0, columns: 1 },
+    left: { row: 0, start: 0, columns: 1, flip: true },
+    right: { row: 0, start: 0, columns: 1, flip: false },
+    up: { row: 0, start: 0, columns: 1 },
+    upLeft: { row: 0, start: 0, columns: 1 },
+    upRight: { row: 0, start: 0, columns: 1 },
+    flipX: false,
+    hitbox: { widthPercentage: 0.45, heightPercentage: 0.2 },
+    keypress: { up: 87, left: 65, down: 83, right: 68 }
+};
 
     
 
