@@ -750,154 +750,139 @@ class Game {
         // Add content
         modal.innerHTML = `
             <style>
-                @keyframes glowBorder {
-                    0% { box-shadow: 0 0 5px #fff, inset 0 0 5px #fff; }
-                    100% { box-shadow: 0 0 15px #fff, inset 0 0 8px #fff; }
-                }
-                @keyframes scanline {
-                    0% { transform: translateY(-100%); }
-                    100% { transform: translateY(100%); }
-                }
-                @keyframes shine {
-                    0% { left: -100%; }
-                    100% { left: 100%; }
-                }
-                .instruction-box {
-                    background: rgba(255, 255, 255, 0.1);
-                    border: 2px solid #ffb300;
-                    margin: 8px 0;
-                    padding: 12px;
-                    display: flex;
-                    align-items: center;
-                    font-size: 0.7em;
-                    position: relative;
-                    overflow: hidden;
-                    transition: all 0.3s;
-                }
-                .instruction-box:hover {
-                    transform: translateX(5px);
-                    background: rgba(255, 255, 255, 0.15);
-                    border-color: #ffd700;
-                }
-                .instruction-box::after {
-                    content: '';
-                    position: absolute;
-                    top: 0;
-                    left: -100%;
-                    width: 100%;
-                    height: 100%;
-                    background: linear-gradient(
-                        90deg,
-                        transparent,
-                        rgba(255, 255, 255, 0.2),
-                        transparent
-                    );
-                    animation: shine 2s infinite;
-                }
-                .instruction-icon {
-                    font-size: 1.2em;
-                    margin-right: 15px;
-                    color: #ffb300;
-                }
-                .instruction-label {
-                    color: #ffb300;
-                    margin-right: 8px;
-                }
-                .modal-title {
-                    font-size: 1.2em;
-                    margin-bottom: 20px;
-                    text-align: center;
-                    color: #ffeb3b;
-                    text-shadow: 2px 2px #000;
-                    position: relative;
-                }
-                .button-container {
-                    display: flex;
-                    justify-content: center;
-                    gap: 15px;
-                    margin-top: 20px;
-                }
-                .game-button {
-                    background: #000;
-                    color: #fff;
-                    border: 2px solid #ffb300;
-                    padding: 12px 20px;
-                    border-radius: 4px;
-                    cursor: pointer;
-                    font-family: 'Press Start 2P', cursive;
-                    font-size: 0.7em;
-                    transition: all 0.3s ease;
-                    position: relative;
-                    overflow: hidden;
-                }
-                .game-button:hover {
-                    transform: translateY(-2px);
-                    border-color: #ffd700;
-                    box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
-                }
-                .game-button::after {
-                    content: '';
-                    position: absolute;
-                    top: -50%;
-                    left: -50%;
-                    width: 200%;
-                    height: 200%;
-                    background: linear-gradient(
-                        45deg,
-                        transparent,
-                        rgba(255, 255, 255, 0.1),
-                        transparent
-                    );
-                    transform: rotate(45deg);
-                    animation: shine 2s infinite;
-                }
-                .scanline {
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 2px;
-                    background: rgba(255, 255, 255, 0.1);
-                    animation: scanline 2s linear infinite;
-                    pointer-events: none;
-                }
-            </style>
+    @keyframes glowBorder {
+        0% { box-shadow: 0 0 5px #fff, inset 0 0 5px #fff; }
+        100% { box-shadow: 0 0 15px #fff, inset 0 0 8px #fff; }
+    }
+    @keyframes scanline {
+        0% { transform: translateY(-100%); }
+        100% { transform: translateY(100%); }
+    }
+    @keyframes shine {
+        0% { left: -100%; }
+        100% { left: 100%; }
+    }
+    .instruction-box {
+        background: rgba(255, 255, 255, 0.1);
+        border: 2px solid #4CAF50;
+        margin: 8px 0;
+        padding: 12px;
+        display: flex;
+        align-items: center;
+        font-size: 0.7em;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s;
+    }
+    .instruction-box:hover {
+        transform: translateX(5px);
+        background: rgba(255, 255, 255, 0.15);
+        border-color: #81C784;
+    }
+    .instruction-box::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(255, 255, 255, 0.2),
+            transparent
+        );
+        animation: shine 2s infinite;
+    }
+    .instruction-icon {
+        font-size: 1.2em;
+        margin-right: 15px;
+        color: #4CAF50;
+    }
+    .instruction-label {
+        color: #4CAF50;
+        margin-right: 8px;
+    }
+    .modal-title {
+        font-size: 1.2em;
+        margin-bottom: 20px;
+        text-align: center;
+        color: #4CAF50;
+        text-shadow: 2px 2px #000;
+        position: relative;
+    }
+    .button-container {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-top: 20px;
+    }
+    .game-button {
+        background: #000;
+        color: #fff;
+        border: 2px solid #4CAF50;
+        padding: 12px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-family: 'Press Start 2P', cursive;
+        font-size: 0.7em;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+    .game-button:hover {
+        transform: translateY(-2px);
+        border-color: #81C784;
+        box-shadow: 0 0 15px rgba(129, 199, 132, 0.5);
+    }
+    .game-button::after {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(
+            45deg,
+            transparent,
+            rgba(255, 255, 255, 0.1),
+            transparent
+        );
+        transform: rotate(45deg);
+        animation: shine 2s infinite;
+    }
+    .scanline {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: rgba(255, 255, 255, 0.1);
+        animation: scanline 2s linear infinite;
+        pointer-events: none;
+    }
+</style>
             <div class="scanline"></div>
             <h2 class="modal-title">
-                <span style="color: #4CAF50;">⚡</span> HOW TO PLAY <span style="color: #4CAF50;">⚡</span>
+                <span style="color: #4CAF50;">⚡</span> Welcome to Sigma Land! <span style="color: #4CAF50;">⚡</span>
             </h2>
             <div class="instruction-box">
-                <span class="instruction-icon">🎮</span>
-                <span class="instruction-label">Movement:</span>
-                <span>WASD or Arrow Keys to move</span>
+                <span class="instruction-icon">👻</span>
+                <span class="instruction-label">You are in Sigma Land!:</span>
+                <span>Find skibidi friends and have a good time</span>
             </div>
             <div class="instruction-box">
-                <span class="instruction-icon">🗣️</span>
-                <span class="instruction-label">Interact:</span>
-                <span>Press E near NPCs</span>
-            </div>
-            <div class="instruction-box">
-                <span class="instruction-icon">📊</span>
-                <span class="instruction-label">Stats:</span>
-                <span>Click stats icon (top-right)</span>
-            </div>
-            <div class="instruction-box">
-                <span class="instruction-icon">🎒</span>
-                <span class="instruction-label">Inventory:</span>
-                <span>Press I to view items</span>
-            </div>
-            <div class="instruction-box">
-                <span class="instruction-icon">💰</span>
-                <span class="instruction-label">Goal:</span>
-                <span>Learn finance & earn money!</span>
+                <span class="instruction-icon">👆</span>
+                <span class="instruction-label">What do these characters do?:</span>
+                <span>Press E while next to them to find out..</span>
             </div>
             <div class="instruction-box">
                 <span class="instruction-icon">❓</span>
-                <span class="instruction-label">Help:</span>
-                <span>Press H to show this menu</span>
+                <span class="instruction-label">If you need help:</span>
+                <span>Click on H for this menu to pop up again</span>
             </div>
             <div class="button-container">
-                <button class="game-button" id="closeInstructions">GOT IT!</button>
+                <button class="game-button" id="closeInstructions">LETS GO EXPLORE</button>
             </div>
         `;
 
