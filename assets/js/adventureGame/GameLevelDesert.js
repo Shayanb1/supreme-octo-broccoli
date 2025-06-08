@@ -10,34 +10,34 @@ import GameLevelMeteorBlaster from './GameLevelMeteorBlaster.js';
 import GameLevelMinesweeper from './GameLevelMinesweeper.js';
 import GameLevelEnd from './GameLevelEnd.js';
 
-class GameLevelDesert {
+class GameLevelSkibidi {
   constructor(gameEnv) {
     let width = gameEnv.innerWidth;
     let height = gameEnv.innerHeight;
     let path = gameEnv.path;
 
     // Background data
-    const image_src_desert = path + "/images/adventureGame/bckg.jpeg";
+    const image_src_skibidi = path + "/images/gamify/backgroundg.jpg";
     //"/images/gamify/desert.png"; // be sure to include the path
-    const image_data_desert = {
+    const image_data_skibidi = {
         name: 'desert',
         greeting: "Welcome to the desert!  It is hot and dry here, but there are many adventures to be had!",
-        src: image_src_desert,
+        src: image_src_skibidi,
         pixels: {height: 580, width: 1038}
     };
 
 
-    // Player data for Chillguy
-const sprite_src_chillguy = path + "/images/gamify/golblin.png";
-const CHILLGUY_SCALE_FACTOR = 5;
-const sprite_data_chillguy = {
+    // Player data for Player (Sigma)
+const sprite_src_sigma = path + "/images/gamify/golblin.png";
+const SIGMA_SCALE_FACTOR = 5;
+const sprite_data_sigma = {
     id: 'Chill Guy',
     greeting: "Hi I am Chill Guy, the desert wanderer. I am looking for wisdom and adventure!",
-    src: sprite_src_chillguy,
-    SCALE_FACTOR: CHILLGUY_SCALE_FACTOR,
+    src: sprite_src_sigma,
+    SCALE_FACTOR: SIGMA_SCALE_FACTOR,
     STEP_FACTOR: 1000,
     ANIMATION_RATE: 50,
-    INIT_POSITION: { x: 0, y: height - (height / CHILLGUY_SCALE_FACTOR) },
+    INIT_POSITION: { x: 0, y: height - (height / SIGMA_SCALE_FACTOR) },
     pixels: { height: 770, width: 798 },
     orientation: { rows: 1, columns: 1 },
     down: { row: 0, start: 0, columns: 1 },
@@ -717,8 +717,8 @@ const sprite_data_chillguy = {
 
     // List of objects defnitions for this level
     this.classes = [
-      { class: GamEnvBackground, data: image_data_desert },
-      { class: Player, data: sprite_data_chillguy },
+      { class: GamEnvBackground, data: image_data_skibidi },
+      { class: Player, data: sprite_data_sigma },
       { class: Npc, data: sprite_data_tux },
       { class: Npc, data: sprite_data_octocat },
       { class: Npc, data: sprite_data_robot },
@@ -732,4 +732,4 @@ const sprite_data_chillguy = {
 
 }
 
-export default GameLevelDesert;
+export default GameLevelSkibidi;
