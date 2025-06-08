@@ -28,17 +28,17 @@ class GameLevelSkibidi {
 
 
     // Player data for Player (Sigma)
-const sprite_src_sigma = path + "/images/gamify/golblin.png";
-const SIGMA_SCALE_FACTOR = 5;
+const sprite_src_sigma = path + "/images/gamify/PlayerDragon.png";
+const SIGMA_SCALE_FACTOR = 7;
 const sprite_data_sigma = {
-    id: 'Chill Guy',
+    id: 'Sigma Boy',
     greeting: "Hi I am Chill Guy, the desert wanderer. I am looking for wisdom and adventure!",
     src: sprite_src_sigma,
     SCALE_FACTOR: SIGMA_SCALE_FACTOR,
-    STEP_FACTOR: 1000,
-    ANIMATION_RATE: 50,
-    INIT_POSITION: { x: 0, y: height - (height / SIGMA_SCALE_FACTOR) },
-    pixels: { height: 770, width: 798 },
+    STEP_FACTOR: 350,
+    ANIMATION_RATE: 10,
+    INIT_POSITION: { x: 2000, y: 20/15 },
+    pixels: { height: 760, width: 772 },
     orientation: { rows: 1, columns: 1 },
     down: { row: 0, start: 0, columns: 1 },
     downRight: { row: 0, start: 0, columns: 1 },
@@ -57,45 +57,42 @@ const sprite_data_sigma = {
 
 
     // NPC data for Tux 
-    const sprite_src_tux = path + "/images/gamify/tux.png";
-    const sprite_greet_tux = "Hi I am Tux, the Linux mascot. I am very happy to spend some linux shell time with you!";
-    const sprite_data_tux = {
-        id: 'Tux',
-        greeting: sprite_greet_tux,
-        src: sprite_src_tux,
-        SCALE_FACTOR: 8,
-        ANIMATION_RATE: 50,
-        pixels: {height: 256, width: 352},
-        INIT_POSITION: { x: (width / 2), y: (height / 2)},
-        orientation: {rows: 8, columns: 11 },
-        down: {row: 5, start: 0, columns: 3 },
-        hitbox: { widthPercentage: 0.1, heightPercentage: 0.2 },
-        dialogues: [
-            "The terminal is a powerful tool. It's like having superpowers!",
-            "Did you know Linux powers most web servers and supercomputers?",
-            "ls, cd, mkdir, rm - these commands will become your best friends.",
-            "I love open source software! Freedom to study, modify, and share.",
-            "Have you tried using pipes to connect commands? It's magical!",
-            "Vim or Emacs? That's the eternal question among Linux users.",
-            "The penguin mascot represents the cold conditions of Finland where Linux was developed.",
-            "Linux was created by Linus Torvalds in 1991 while he was a student."
-        ],
-        reaction: function() {
-            // Use dialogue system instead of alert
-            if (this.dialogueSystem) {
-                this.showReactionDialogue();
-            } else {
-                console.log(sprite_greet_tux);
-            }
-        },
-        interact: function() {
-            // Show random dialogue message
-            if (this.dialogueSystem) {
-                this.showRandomDialogue();
-            }
+const sprite_src_tux = path + "/images/gamify/images.png";
+const sprite_greet_tux = "Hi I am Tux, the Linux mascot. I am very happy to spend some linux shell time with you!";
+const sprite_data_tux = {
+    id: 'Gigachad',
+    greeting: sprite_greet_tux,
+    src: sprite_src_tux,
+    SCALE_FACTOR: 4,
+    ANIMATION_RATE: 50,
+    pixels: { height: 225, width: 225 },
+    INIT_POSITION: { x: 200, y: 22 },
+    orientation: { rows: 1, columns: 1 },
+    down: { row: 0, start: 0, columns: 1 },
+    hitbox: { widthPercentage: 0.01, heightPercentage: 0.1 },
+    dialogues: [
+        "Flee from here you foul beast! Or there shall be consequences..",
+        "Did you know Linux powers most web servers and supercomputers?",
+        "ls, cd, mkdir, rm - these commands will become your best friends.",
+        "I love open source software! Freedom to study, modify, and share.",
+        "Have you tried using pipes to connect commands? It's magical!",
+        "Vim or Emacs? That's the eternal question among Linux users.",
+        "The penguin mascot represents the cold conditions of Finland where Linux was developed.",
+        "Linux was created by Linus Torvalds in 1991 while he was a student."
+    ],
+    reaction: function() {
+        if (this.dialogueSystem) {
+            this.showReactionDialogue();
+        } else {
+            console.log(sprite_greet_tux);
         }
-    };
-
+    },
+    interact: function() {
+        if (this.dialogueSystem) {
+            this.showRandomDialogue();
+        }
+    }
+};
 
 
       const sprite_src_octocat = path + "/images/gamify/octocat.png";
@@ -138,7 +135,7 @@ const sprite_data_sigma = {
           }
       };
     
-      const sprite_src_endportal = path + "/images/gamify/exitportalfull.png";
+      const sprite_src_endportal = path + "/images/gamify/portal.png";
       const sprite_greet_endportal = "Teleport to the End? Press E";
       const sprite_data_endportal = {
           id: 'End Portal',
@@ -146,11 +143,11 @@ const sprite_data_sigma = {
           src: sprite_src_endportal,
           SCALE_FACTOR: 6,
           ANIMATION_RATE: 100,
-          pixels: {width: 2029, height: 2025},
-          INIT_POSITION: { x: (width * 2 / 5), y: (height * 1 / 10)},
+          pixels: {width: 191, height: 263},
+          INIT_POSITION: { x: 50, y: 3},
           orientation: {rows: 1, columns: 1 },
           down: {row: 0, start: 0, columns: 1 },
-          hitbox: { widthPercentage: 0.1, heightPercentage: 0.2 },
+          hitbox: { widthPercentage: 0.05, heightPercentage: 0.2 },
           // Add dialogues array for random messages
           dialogues: [
               "The End dimension awaits brave explorers.",
