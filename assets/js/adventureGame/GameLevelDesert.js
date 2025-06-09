@@ -23,13 +23,14 @@ class GameLevelSkibidi {
         name: 'desert',
         greeting: "Welcome to the desert!  It is hot and dry here, but there are many adventures to be had!",
         src: image_src_skibidi,
-        pixels: {height: 580, width: 1038}
+        pixels: {height: 639, width: 360}
+        //{height: 580, width: 1038}
     };
 
 
     // Player data for Player (Sigma)
 const sprite_src_sigma = path + "/images/gamify/PlayerDragon.png";
-const SIGMA_SCALE_FACTOR = 7;
+const SIGMA_SCALE_FACTOR = 5;
 const sprite_data_sigma = {
     id: 'Sigma Boy',
     greeting: "Hi I am Chill Guy, the desert wanderer. I am looking for wisdom and adventure!",
@@ -71,14 +72,14 @@ const sprite_data_tux = {
     down: { row: 0, start: 0, columns: 1 },
     hitbox: { widthPercentage: 0.01, heightPercentage: 0.1 },
     dialogues: [
-        "Flee from here you foul beast! Or there shall be consequences..",
-        "Did you know Linux powers most web servers and supercomputers?",
-        "ls, cd, mkdir, rm - these commands will become your best friends.",
-        "I love open source software! Freedom to study, modify, and share.",
-        "Have you tried using pipes to connect commands? It's magical!",
-        "Vim or Emacs? That's the eternal question among Linux users.",
-        "The penguin mascot represents the cold conditions of Finland where Linux was developed.",
-        "Linux was created by Linus Torvalds in 1991 while he was a student."
+        "Try to find a way out of here, ive been trapped for millions of years",
+        "I have been stuck here for a long time, it's nice to have some company",
+        "I am the Gigachad, once a great warrior until I was trapped here",
+        "Every day I dream to see the real world, do they still sing songs about me out there?",
+        "I watched empires rise and fall from behind these cursed walls",
+        "My name once shook the heavens... Now it echoes in silence",
+        "Before I was trapped here, I was told there is a magic portal somewhere, but I never managed to find it",
+    
     ],
     reaction: function() {
         if (this.dialogueSystem) {
@@ -94,7 +95,7 @@ const sprite_data_tux = {
     }
 };
 
-
+        /*
       const sprite_src_octocat = path + "/images/gamify/octocat.png";
       const sprite_greet_octocat = "Hi I am Octocat! I am the GitHub code code code collaboration mascot";
       const sprite_data_octocat = {
@@ -134,30 +135,23 @@ const sprite_data_tux = {
               }
           }
       };
-    
+      */
       const sprite_src_endportal = path + "/images/gamify/portal.png";
-      const sprite_greet_endportal = "Teleport to the End? Press E";
+      const sprite_greet_endportal = "Teleport inside? Press E";
       const sprite_data_endportal = {
-          id: 'End Portal',
+          id: 'Mysterious Portal',
           greeting: sprite_greet_endportal,
           src: sprite_src_endportal,
-          SCALE_FACTOR: 6,
+          SCALE_FACTOR: 3,
           ANIMATION_RATE: 100,
           pixels: {width: 191, height: 263},
-          INIT_POSITION: { x: 50, y: 3},
+          INIT_POSITION: { x: 30, y: height - 200},
           orientation: {rows: 1, columns: 1 },
           down: {row: 0, start: 0, columns: 1 },
           hitbox: { widthPercentage: 0.05, heightPercentage: 0.2 },
           // Add dialogues array for random messages
           dialogues: [
-              "The End dimension awaits brave explorers.",
-              "Through this portal lies a realm of floating islands and strange creatures.",
-              "The Enderman guards ancient treasures. Who knows what else lurks beyond this portal?",
-              "Many have entered. Few have returned.",
-              "The void calls to you. Will you answer?",
-              "The End is not truly the end, but a new beginning.",
-              "Strange things await you beyond this portal..",
-              "Prepare yourself. The journey beyond won't be easy."
+              "Come inside where the secrets lie..",
           ],
           reaction: function() {
               // Don't show any reaction dialogue - this prevents the first alert
@@ -176,8 +170,8 @@ const sprite_data_tux = {
               
               // Show portal dialogue with buttons
               this.dialogueSystem.showDialogue(
-                  "Do you wish to enter The End dimension?",
-                  "End Portal",
+                  "Come inside, maybe this is the way out..",
+                  "Mysterious Portal",
                   this.spriteData.src
               );
               
@@ -232,7 +226,7 @@ const sprite_data_tux = {
                                           });
                                       }
                                       
-                                      console.log("Setting up End level...");
+                                      console.log("Setting up Dragon Realm...");
                                       
                                       // IMPORTANT: Store the original level classes for return journey
                                       gameControl._originalLevelClasses = gameControl.levelClasses;
@@ -261,7 +255,7 @@ const sprite_data_tux = {
                       }
                   },
                   {
-                      text: "Not Ready",
+                      text: "Too scared",
                       action: () => {
                           this.dialogueSystem.closeDialogue();
                       }
@@ -269,7 +263,7 @@ const sprite_data_tux = {
               ]);
           }
       }
-          
+          /*
       const sprite_src_stocks = path + "/images/gamify/stockguy.png";
       const sprite_greet_stocks = "Darn it, I lost some money on the stock market.. come with me to help me out?";
       const sprite_data_stocks = {
@@ -385,7 +379,9 @@ const sprite_data_tux = {
               }
           }
       };
+        */
 
+        /*
     const sprite_src_crypto = path + "/images/gamify/bitcoin.png";
     const sprite_greet_crypto = "*cha-ching*";
     const sprite_data_crypto = {
@@ -502,8 +498,8 @@ const sprite_data_tux = {
         }
 
     };
-
-    const sprite_src_robot = path + "/images/gamify/robot.png";
+            */
+    /* const sprite_src_robot = path + "/images/gamify/robot.png";
     const sprite_greet_robot = "Hi I am Robot, the Jupyter Notebook mascot. I am very happy to spend some linux shell time with you!";
     const sprite_data_robot = {
         id: 'Robot',
@@ -553,8 +549,10 @@ const sprite_data_tux = {
                 primaryGame.resume();
             }
         }
-    };
+      };
+      */
 
+        /*      
       const sprite_src_r2d2 = path + "/images/gamify/r2_idle.png";
       const sprite_greet_r2d2 = "Hi I am R2D2. Leave this planet and help defend the rebel base on Hoth!";
       const sprite_data_r2d2 = {
@@ -666,7 +664,8 @@ const sprite_data_tux = {
               }, totalDuration + 200); // Delay a bit after loading bar finishes
           }
       };
-
+        */
+    /*
     const sprite_src_minesweeper = path + "/images/gamify/robot.png";
     const sprite_greet_minesweeper = "Want to play a game of Minesweeper? Right-click to flag mines!";
     const sprite_data_minesweeper = {
@@ -711,18 +710,18 @@ const sprite_data_tux = {
             }
         }
     };
+    */
 
     // List of objects defnitions for this level
     this.classes = [
       { class: GamEnvBackground, data: image_data_skibidi },
       { class: Player, data: sprite_data_sigma },
       { class: Npc, data: sprite_data_tux },
-      { class: Npc, data: sprite_data_octocat },
-      { class: Npc, data: sprite_data_robot },
-      { class: Npc, data: sprite_data_r2d2 },
-      { class: Npc, data: sprite_data_stocks },
-      { class: Npc, data: sprite_data_crypto },
-      { class: Npc, data: sprite_data_minesweeper },
+      //{ class: Npc, data: sprite_data_octocat },
+      //{ class: Npc, data: sprite_data_r2d2 },
+      //{ class: Npc, data: sprite_data_stocks },
+      //{ class: Npc, data: sprite_data_crypto },
+      //{ class: Npc, data: sprite_data_minesweeper },
       { class: Npc, data: sprite_data_endportal }  // Added End Portal NPC
     ];
   }

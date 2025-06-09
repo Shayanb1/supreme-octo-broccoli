@@ -1,7 +1,7 @@
 ---
 layout: base
 title: Adventure Game
-permalink: /gamify/adventureGame
+permalink: /gamify/SigmaWorld
 ---
 
 <div id="gameContainer">

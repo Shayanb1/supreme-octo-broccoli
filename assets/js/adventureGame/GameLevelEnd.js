@@ -19,14 +19,14 @@ class GameLevelEnd {
     let height = gameEnv.innerHeight;
     let path = gameEnv.path;
     
-    this.eyesCollected = 0;
+    //this.eyesCollected = 0;
     this.endTime = null;
     this.startTime = Date.now();
     this.gameCompleted = false;
     
     // Initialize the dialogue system
     this.dialogueSystem = new DialogueSystem();
-    
+    /*
     // Parallax background configuration
     const image_src_parallax = path + "/images/gamify/parallaxbg.png";
     const image_data_parallax = {
@@ -40,72 +40,85 @@ class GameLevelEnd {
         layer: 0,  // Explicitly set the layer to 0 (furthest back)
         zIndex: 1  // Use positive z-index but keep it low
     };
-    
-    const image_src_end = path + "/images/gamify/TransparentEnd.png";
+    */
+    const image_src_end = path + "/images/gamify/NewWorld.png";
     const image_data_end = {
         name: 'end',
         id: 'end-background',
         greeting: "The End opens before you, a vast black void in the distance. The stone beneath your feet is yellowish and hard, and the air tingles.",
         src: image_src_end,
-        pixels: {height: 1140, width: 2460},
+        pixels: {height: 2560, width: 1536},
         layer: 1,  // Set layer to 1 to be in front of parallax
         zIndex: 5  // Higher z-index to appear above parallax
     };
     
-    const sprite_src_chillguy = path + "/images/gamify/Steve.png";
-    const CHILLGUY_SCALE_FACTOR = 7;
-    const sprite_data_chillguy = {
-        id: 'Steve',
-        greeting: "Hi, I am Steve.",
-        src: sprite_src_chillguy,
-        SCALE_FACTOR: CHILLGUY_SCALE_FACTOR,
-        STEP_FACTOR: 1000,
-        ANIMATION_RATE: 25,
-        
-        INIT_POSITION: { x: width/16, y: height/2 },
-        pixels: {height: 256, width: 128},
-        orientation: {rows: 8, columns: 4 },
-        down: {row: 1, start: 0, columns: 4 },
-        downRight: {row: 7, start: 0, columns: 4, rotate: Math.PI/8 },
-        downLeft: {row: 5, start: 0, columns: 4, rotate: -Math.PI/8 },
-        left: {row: 5, start: 0, columns: 4 },
-        right: {row: 7, start: 0, columns: 4 },
-        up: {row: 3, start: 0, columns: 4 },
-        upLeft: {row: 5, start: 0, columns: 4, rotate: Math.PI/8 },
-        upRight: {row: 7, start: 0, columns: 4, rotate: -Math.PI/8 },
-        hitbox: { widthPercentage: 0.45, heightPercentage: 0.2 },
-        keypress: { up: 87, left: 65, down: 83, right: 68 } // Using W, A, S, D for Steve
-    };
+    // Player data for Player (Sigma)
+const sprite_src_sigma = path + "/images/gamify/PlayerDragon.png";
+const SIGMA_SCALE_FACTOR = 5;
+const sprite_data_sigma = {
+    id: 'Sigma Boy',
+    greeting: "Hi I am Chill Guy, the desert wanderer. I am looking for wisdom and adventure!",
+    src: sprite_src_sigma,
+    SCALE_FACTOR: SIGMA_SCALE_FACTOR,
+    STEP_FACTOR: 500,
+    ANIMATION_RATE: 10,
+    INIT_POSITION: { x: 2000, y: 20/15 },
+    pixels: { height: 760, width: 772 },
+    orientation: { rows: 1, columns: 1 },
+    down: { row: 0, start: 0, columns: 1 },
+    downRight: { row: 0, start: 0, columns: 1 },
+    downLeft: { row: 0, start: 0, columns: 1 },
+    left: { row: 0, start: 0, columns: 1, flip: true },
+    right: { row: 0, start: 0, columns: 1, flip: false },
+    up: { row: 0, start: 0, columns: 1 },
+    upLeft: { row: 0, start: 0, columns: 1 },
+    upRight: { row: 0, start: 0, columns: 1 },
+    flipX: false,
+    hitbox: { widthPercentage: 0.45, heightPercentage: 0.2 },
+    keypress: { up: 87, left: 65, down: 83, right: 68 }
+};
     
-    const sprite_src_alex = path + "/images/gamify/Alex.png";
-    const alex_SCALE_FACTOR = 7;
+    const sprite_src_alex = path + "/images/gamify/images.png";
+    const alex_SCALE_FACTOR = 5.5;
     const sprite_data_alex = {
-        id: 'Alex',
-        greeting: "Hi, I am Alex",
+        id: 'Gigachad',
+        greeting: "Hey, Im Gigachad",
         src: sprite_src_alex,
         SCALE_FACTOR: alex_SCALE_FACTOR,
-        STEP_FACTOR: 1000,
+        STEP_FACTOR: 500,
         ANIMATION_RATE: 25,
-        
-        INIT_POSITION: { x: 0, y: height/2 },
-        pixels: {height: 256, width: 128},
-        orientation: {rows: 8, columns: 4 },
-        down: {row: 1, start: 0, columns: 4 },
-        downRight: {row: 7, start: 0, columns: 4, rotate: Math.PI/8 },
-        downLeft: {row: 5, start: 0, columns: 4, rotate: -Math.PI/8 },
-        left: {row: 5, start: 0, columns: 4 },
-        right: {row: 7, start: 0, columns: 4 },
-        up: {row: 3, start: 0, columns: 4 },
-        upLeft: {row: 5, start: 0, columns: 4, rotate: Math.PI/8 },
-        upRight: {row: 7, start: 0, columns: 4, rotate: -Math.PI/8 },
-        hitbox: { widthPercentage: 0.45, heightPercentage: 0.2 },
-        keypress: { up: 73, left: 74, down: 75, right: 76 } // Using I, J, K, L for Alex to differentiate from Steve 
+        INIT_POSITION: { x: width/0, y: height/2 },
+        pixels: {height: 225, width: 225},
+        orientation: {rows: 1, columns: 1 },
+        down: {row: 0, start: 0, columns: 1 },
+        downRight: {row: 0, start: 0, columns: 1},
+        downLeft: {row: 0, start: 0, columns: 1},
+        left: {row: 0, start: 0, columns: 1 },
+        right: {row: 0, start: 0, columns: 1 },
+        up: {row: 0, start: 0, columns: 1 },
+        upLeft: {row: 0, start: 0, columns: 1},
+        upRight: {row: 0, start: 0, columns: 1},
+        flipX: true,
+        hitbox: { widthPercentage: 0.01, heightPercentage: 0.1 },
+        keypress: { up: 73, left: 74, down: 75, right: 76 } // Using I, J, K, L for Alex to differentiate from Steve
     };
+    
+    /* id: 'Gigachad',
+    greeting: sprite_greet_tux,
+    src: sprite_src_tux,
+    SCALE_FACTOR: 4,
+    ANIMATION_RATE: 50,
+    pixels: { height: 225, width: 225 },
+    INIT_POSITION: { x: 200, y: 22 },
+    orientation: { rows: 1, columns: 1 },
+    down: { row: 0, start: 0, columns: 1 },
+    hitbox: { widthPercentage: 0.01, heightPercentage: 0.1 },
+    */
 
     // Store a reference to the current instance to use in closures
     const self = this;
 
-    const sprite_src_enemy = path + "/images/gamify/enderman.png";
+    /* const sprite_src_enemy = path + "/images/gamify/enderman.png";
     const sprite_data_enemy = {
         id: 'Enderman',
         greeting: "You feel a dark presence...",
@@ -272,8 +285,9 @@ class GameLevelEnd {
             }
         }
     };
-        
-    const sprite_src_endship = path + "/images/gamify/endship.png";
+    */
+
+    /* const sprite_src_endship = path + "/images/gamify/endship.png";
     const sprite_greet_endship = "Find the elytra";
     
     // Store a reference to the dialogueSystem for use in sprite data
@@ -304,7 +318,9 @@ class GameLevelEnd {
           dialogueSystem.showRandomDialogue(); // Using Dialogue system instead of alert
         }
     };
-
+    
+  
+    
     const sprite_src_eye = path + "/images/gamify/eyeOfEnder.png";
     const sprite_data_eye = {
         id: 'Eye of Ender',
@@ -450,15 +466,15 @@ class GameLevelEnd {
             }
         }
     };
-    
+    */
     this.classes = [
-      { class: BackgroundParallax, data: image_data_parallax },  // Add parallax background first
+      //{ class: BackgroundParallax, data: image_data_parallax },  // Add parallax background first
       { class: GamEnvBackground, data: image_data_end },         // Then regular background
-      { class: Player, data: sprite_data_chillguy },
-      { class: Npc, data: sprite_data_endship },
-      { class: Collectible, data: sprite_data_eye },
+      { class: Player, data: sprite_data_sigma },
+      //{ class: Npc, data: sprite_data_endship },
+      //{ class: Collectible, data: sprite_data_eye },
       { class: Player, data: sprite_data_alex },
-      { class: Enemy, data: sprite_data_enemy }
+      //{ class: Enemy, data: sprite_data_enemy }
     ];
     
     if (this.gameEnv) {
@@ -467,7 +483,7 @@ class GameLevelEnd {
     this.gameEnv.game = gameEnv.game;
     }
     // Create eye counter UI
-    this.createEyeCounter();
+    //this.createEyeCounter();
     
     // Create the standalone stopwatch - wait for the stats container to be available
     setTimeout(() => this.createStandaloneStopwatch(), 100);
@@ -773,7 +789,7 @@ class GameLevelEnd {
     document.body.appendChild(counterContainer);
   }
   
-  // Update the eye counter display
+  /* Update the eye counter display
   updateEyeCounter() {
     const counterText = document.getElementById('eye-counter');
     if (counterText) {
@@ -790,6 +806,7 @@ class GameLevelEnd {
       }, 300);
     }
   }
+  */
   
   // New method to update player's balance
   updatePlayerBalance(amount) {

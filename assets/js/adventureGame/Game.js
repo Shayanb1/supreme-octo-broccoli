@@ -516,6 +516,7 @@ class StatsManager {
         });
         // --- END PINNED STATE LOGIC ---
     }
+    
 
     updateNpcsTalkedToUI(count) {
         const npcsSpan = document.getElementById('npcsTalkedTo');
