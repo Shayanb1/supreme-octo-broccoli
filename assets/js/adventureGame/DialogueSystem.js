@@ -49,7 +49,7 @@ class DialogueSystem {
       fontFamily: "'Press Start 2P', cursive, monospace",
       fontSize: "14px",
       textAlign: "center",
-      border: "2px solid #4a86e8",
+      border: "2px solid #7F00FF",
       borderRadius: "12px",
       zIndex: "9999",
       boxShadow: "0 0 20px rgba(0, 255, 255, 0.7)",
@@ -74,7 +74,7 @@ class DialogueSystem {
     speakerName.id = "dialogue-speaker-" + this.id;
     Object.assign(speakerName.style, {
       fontWeight: "bold",
-      color: "#4a86e8",
+      color: "7F00FF",
       marginBottom: "10px",
       fontSize: "16px"
     });
@@ -93,7 +93,7 @@ class DialogueSystem {
     Object.assign(this.closeBtn.style, {
       marginTop: "15px",
       padding: "10px 20px",
-      background: "#4a86e8",
+      background: "7F00FF",
       color: "#fff",
       border: "none",
       borderRadius: "5px",
@@ -236,7 +236,7 @@ class DialogueSystem {
           const btn = document.createElement('button');
           btn.textContent = button.text;
           btn.style.padding = '8px 15px';
-          btn.style.background = button.primary ? '#4a86e8' : '#666';
+          btn.style.background = button.primary ? '7F00FF' : '#666';
           btn.style.color = 'white';
           btn.style.border = 'none';
           btn.style.borderRadius = '5px';

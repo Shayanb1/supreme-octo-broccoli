@@ -96,27 +96,21 @@ const sprite_data_tux = {
 };
 
 // NPC data for wizard
-const sprite_src_wizard = path + "/images/gamify/wiz.png";
+const sprite_src_wizard = path + "/images/gamify/sw.png";
 const sprite_greet_wizard = "Hi I am a wizard, I can help you go wherever you would like";
 const sprite_data_wizard = {
     id: 'Wizard',
     greeting: sprite_greet_wizard,
     src: sprite_src_wizard,
-    SCALE_FACTOR: 4,
+    SCALE_FACTOR: 2.5,
     ANIMATION_RATE: 50,
-    pixels: { height: 1566, width: 1080 },
-    INIT_POSITION: { x: 1500, y: -200 },
+    pixels: { height: 600, width: 600 },
+    INIT_POSITION: { x:  width/2, y: height - 500 },
     orientation: { rows: 1, columns: 1 },
     down: { row: 0, start: 0, columns: 1 },
-    hitbox: { widthPercentage: 0.5, heightPercentage: 0.5 },
+    hitbox: { widthPercentage: 0.1, heightPercentage: 0.1 },
     dialogues: [
-        "Try to find a way out of here, ive been trapped for millions of years",
-        "I have been stuck here for a long time, it's nice to have some company",
-        "I am the Gigachad, once a great warrior until I was trapped here",
-        "Every day I dream to see the real world, do they still sing songs about me out there?",
-        "I watched empires rise and fall from behind these cursed walls",
-        "My name once shook the heavens... Now it echoes in silence",
-        "Before I was trapped here, I was told there is a magic portal somewhere, but I never managed to find it",
+        "I have created a portal you can use to leave this place, use it as your own will...",
     
     ],
     reaction: function() {

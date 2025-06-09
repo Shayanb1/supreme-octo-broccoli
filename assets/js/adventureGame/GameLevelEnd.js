@@ -103,378 +103,46 @@ const sprite_data_sigma = {
         keypress: { up: 73, left: 74, down: 75, right: 76 } // Using I, J, K, L for Alex to differentiate from Steve
     };
     
-    /* id: 'Gigachad',
-    greeting: sprite_greet_tux,
-    src: sprite_src_tux,
+      // NPC data for King
+const sprite_src_king = path + "/images/gamify/RealKing.png";
+const sprite_greet_king = "Hi I am a wizard, I can help you go wherever you would like";
+const sprite_data_king = {
+    id: 'The King',
+    greeting: sprite_greet_king,
+    src: sprite_src_king,
     SCALE_FACTOR: 4,
     ANIMATION_RATE: 50,
-    pixels: { height: 225, width: 225 },
-    INIT_POSITION: { x: 200, y: 22 },
+    pixels: { height: 640, width: 640 },
+    INIT_POSITION: { x:  width/2, y: height - 370 },
     orientation: { rows: 1, columns: 1 },
     down: { row: 0, start: 0, columns: 1 },
-    hitbox: { widthPercentage: 0.01, heightPercentage: 0.1 },
-    */
+    hitbox: { widthPercentage: 0.05, heightPercentage: 0.05 },
+    dialogues: [
+        "Finally some company, this is the cloud kingdom, here you are completly free from all worries, and just live life",
+    
+    ],
+    reaction: function() {
+        if (this.dialogueSystem) {
+            this.showReactionDialogue();
+        } else {
+            console.log(sprite_greet_tux);
+        }
+    },
+    interact: function() {
+        if (this.dialogueSystem) {
+            this.showRandomDialogue();
+        }
+    }
+};
 
     // Store a reference to the current instance to use in closures
     const self = this;
 
-    /* const sprite_src_enemy = path + "/images/gamify/enderman.png";
-    const sprite_data_enemy = {
-        id: 'Enderman',
-        greeting: "You feel a dark presence...",
-        src: sprite_src_enemy,
-        SCALE_FACTOR: 10,
-        ANIMATION_RATE: 50,
-        pixels: {height: 1504, width: 574},
-        INIT_POSITION: { x: width / 2, y: height / 4 },
-        orientation: {rows: 1, columns: 1},
-        down: {row: 0, start: 0, columns: 1},
-        hitbox: { widthPercentage: 0.4, heightPercentage: 0.4 },
-        zIndex: 10,
-        isKilling: false, // Flag to prevent multiple kills
-        
-        // The update method with all functionality inline
-        update: function() {
-            // Skip update if already in killing process
-            if (this.isKilling) {
-                return;
-            }
-            
-            // Find all player objects
-            const players = this.gameEnv.gameObjects.filter(obj => 
-                obj.constructor.name === 'Player'
-            );
-            
-            if (players.length === 0) return;
-            
-            // Find nearest player
-            let nearest = players[0];
-            let minDist = Infinity;
-
-            for (const player of players) {
-                const dx = player.position.x - this.position.x;
-                const dy = player.position.y - this.position.y;
-                const dist = Math.sqrt(dx*dx + dy*dy);
-                if (dist < minDist) {
-                    minDist = dist;
-                    nearest = player;
-                }
-            }
-
-            // Move towards nearest player
-            const speed = 1.5; // Adjust speed as needed
-            const dx = nearest.position.x - this.position.x;
-            const dy = nearest.position.y - this.position.y;
-            const angle = Math.atan2(dy, dx);
-            
-            // Update position
-            this.position.x += Math.cos(angle) * speed;
-            this.position.y += Math.sin(angle) * speed;
-            
-            // Check for collision with any player
-            for (const player of players) {
-                // Calculate distance for hitbox collision
-                const playerX = player.position.x + player.width / 2;
-                const playerY = player.position.y + player.height / 2;
-                const enemyX = this.position.x + this.width / 2;
-                const enemyY = this.position.y + this.height / 2;
-                
-                const dx = playerX - enemyX;
-                const dy = playerY - enemyY;
-                const distance = Math.sqrt(dx*dx + dy*dy);
-                
-                // Hitbox collision - adjust values as needed
-                const collisionThreshold = (player.width * player.hitbox.widthPercentage + 
-                                        this.width * this.hitbox.widthPercentage) / 2;
-                
-                if (distance < collisionThreshold) {
-                    // Set killing flag to prevent repeated kills
-                    this.isKilling = true;
-                    
-                    // === PLAYER DEATH: ALL FUNCTIONALITY INLINE ===
-                    
-                    // 1. Play death animation - particle effect
-                    const playerX = player.position.x;
-                    const playerY = player.position.y;
-                    
-                    // Create explosion effect
-                    for (let i = 0; i < 20; i++) {
-                        const particle = document.createElement('div');
-                        particle.style.position = 'absolute';
-                        particle.style.width = '5px';
-                        particle.style.height = '5px';
-                        particle.style.backgroundColor = 'red';
-                        particle.style.left = `${playerX + player.width/2}px`;
-                        particle.style.top = `${playerY + player.height/2}px`;
-                        particle.style.zIndex = '9999';
-                        document.body.appendChild(particle);
-                        
-                        // Animate particles outward
-                        const angle = Math.random() * Math.PI * 2;
-                        const speed = Math.random() * 5 + 2;
-                        const distance = Math.random() * 100 + 50;
-                        
-                        const destX = Math.cos(angle) * distance;
-                        const destY = Math.sin(angle) * distance;
-                        
-                        particle.animate(
-                            [
-                                { transform: 'translate(0, 0)', opacity: 1 },
-                                { transform: `translate(${destX}px, ${destY}px)`, opacity: 0 }
-                            ],
-                            {
-                                duration: 1000,
-                                easing: 'ease-out',
-                                fill: 'forwards'
-                            }
-                        );
-                        
-                        // Remove particle after animation
-                        setTimeout(() => {
-                            if (particle.parentNode) {
-                                particle.parentNode.removeChild(particle);
-                            }
-                        }, 1000);
-                    }
-                    
-                    // 2. Show death message dialog
-                    const deathMessage = document.createElement('div');
-                    deathMessage.style.position = 'fixed';
-                    deathMessage.style.top = '50%';
-                    deathMessage.style.left = '50%';
-                    deathMessage.style.transform = 'translate(-50%, -50%)';
-                    deathMessage.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
-                    deathMessage.style.color = '#FF0000';
-                    deathMessage.style.padding = '30px';
-                    deathMessage.style.borderRadius = '10px';
-                    deathMessage.style.fontFamily = "'Press Start 2P', sans-serif";
-                    deathMessage.style.fontSize = '24px';
-                    deathMessage.style.textAlign = 'center';
-                    deathMessage.style.zIndex = '10000';
-                    deathMessage.style.border = '3px solid #FF0000';
-                    deathMessage.style.boxShadow = '0 0 20px rgba(255, 0, 0, 0.5)';
-                    deathMessage.style.width = '400px';
-                    deathMessage.innerHTML = `
-                        <div style="margin-bottom: 20px;">☠️ YOU DIED ☠️</div>
-                        <div style="font-size: 16px; margin-bottom: 20px;">The Enderman got you!</div>
-                        <div style="font-size: 14px;">Respawning in 2 seconds...</div>
-                    `;
-                    
-                    document.body.appendChild(deathMessage);
-                    
-                    // Remove message after delay
-                    setTimeout(() => {
-                        if (deathMessage.parentNode) {
-                            deathMessage.parentNode.removeChild(deathMessage);
-                        }
-                    }, 2000);
-                    
-                    // 3. Reset the level after a short delay using page reload for reliability
-                    setTimeout(() => {
-                        // Clean up any lingering resources before reload
-                        if (self && self.timerInterval) {
-                            clearInterval(self.timerInterval);
-                        }
-                        
-                        // Force a complete page reload - most reliable way to reset
-                        location.reload();
-                    }, 2000); // 2 second delay before reset
-                    
-                    break;
-                }
-            }
-        }
-    };
-    */
-
-    /* const sprite_src_endship = path + "/images/gamify/endship.png";
-    const sprite_greet_endship = "Find the elytra";
-    
-    // Store a reference to the dialogueSystem for use in sprite data
-    const dialogueSystem = this.dialogueSystem;
-    
-    const sprite_data_endship = {
-        id: 'Endship',
-        greeting: sprite_greet_endship,
-        src: sprite_src_endship,
-        SCALE_FACTOR: 5,
-        ANIMATION_RATE: 1000000,
-        pixels: {height: 982, width: 900},
-        INIT_POSITION: { x: (width / 2), y: (height / 2) },
-        orientation: {rows: 1, columns: 1 },
-        down: {row: 0, start: 0, columns: 1 },
-        hitbox: { widthPercentage: 0.1, heightPercentage: 0.2 },
-        zIndex: 10,  // Same z-index as player
-        dialogues: [
-          "The end ship looms before you...",
-          "The end ship seems to beckon you to loot the treasure within...",
-          "funny purple spaceship heheheheheh",
-          // Add more later?
-        ],
-        reaction: function() {
-          //sient reaction for interaction to work
-        },
-        interact: function() {
-          dialogueSystem.showRandomDialogue(); // Using Dialogue system instead of alert
-        }
-    };
-    
-  
-    
-    const sprite_src_eye = path + "/images/gamify/eyeOfEnder.png";
-    const sprite_data_eye = {
-        id: 'Eye of Ender',
-        greeting: `Press E to claim this Eye of Ender.`,
-        src: sprite_src_eye,
-        SCALE_FACTOR: 20,
-        ANIMATION_RATE: 9007199254740991,
-        pixels: {height: 16, width: 16},
-        INIT_POSITION: { x: (Math.random()*width/2.6)+width/19, y: (Math.random()*height/3.5)+height/2.7 },
-        orientation: {rows: 1, columns: 1 },
-        down: {row: 0, start: 0, columns: 0 },
-        hitbox: { widthPercentage: 0.2, heightPercentage: 0.2 },
-        zIndex: 10,
-        // Add eye-specific dialogues with varying collection messages
-        dialogues: [
-            "You found an Eye of Ender! These are crucial for activating the End Portal.",
-            "The Eye of Ender pulses with mysterious energy.",
-            "This Eye of Ender seems to be drawn toward something distant.",
-            "The Eye feels cold to the touch, yet somehow alive.",
-            "Ancient magic flows through this Eye of Ender.",
-            "This Eye of Ender whispers secrets of distant realms."
-        ],
-        reaction: function() {
-            // Silent reaction, dialogue only apepars on interaction
-        },
-        interact: function() {
-            // IMPORTANT: First check if the player is actually near the eye
-            // This uses the collision detection system that's already in place
-            
-            // Get all players from game objects
-            const players = this.gameEnv.gameObjects.filter(obj => 
-                obj.constructor.name === 'Player'
-            );
-            
-            // Check if any player is in collision range with this eye
-            let isPlayerNearby = false;
-            
-            for (const player of players) {
-                // Calculate distance between player and eye
-                const playerX = player.position.x + player.width / 2;
-                const playerY = player.position.y + player.height / 2;
-                const eyeX = this.position.x + this.width / 2;
-                const eyeY = this.position.y + this.height / 2;
-                
-                const dx = playerX - eyeX;
-                const dy = playerY - eyeY;
-                const distance = Math.sqrt(dx*dx + dy*dy);
-                
-                // Calculate collision threshold based on hitboxes
-                const collisionThreshold = (player.width * player.hitbox.widthPercentage + 
-                                          this.width * this.hitbox.widthPercentage) * 1.5; // Slightly larger range
-                
-                if (distance < collisionThreshold) {
-                    isPlayerNearby = true;
-                    break;
-                }
-            }
-            
-            // Only collect the eye if a player is nearby
-            if (!isPlayerNearby) {
-                console.log("Eye is too far away to collect");
-                return; // Exit the method if no player is nearby
-            }
-            
-            // Only proceed with collection if player is nearby
-            // Increment counter and update display
-            self.eyesCollected++;
-            self.updateEyeCounter();
-            self.updatePlayerBalance(100);
-            
-            // ALWAYS MOVE TO NEW POSITION IMMEDIATELY
-            this.move(
-                (Math.random() * width/2.6) + width/19, 
-                (Math.random() * height/3.5) + height/2.7
-            );
-            
-            // Show a quick message that doesn't block gameplay
-            if (this.dialogueSystem) {
-                // Close any existing dialogue first
-                this.dialogueSystem.closeDialogue();
-                
-                // Get a random message
-                let message = "Eye of Ender collected!";
-                if (this.dialogues && this.dialogues.length > 0) {
-                    const randomIndex = Math.floor(Math.random() * this.dialogues.length);
-                    message = this.dialogues[randomIndex];
-                }
-                
-                // Show the message briefly
-                this.dialogueSystem.showDialogue(message, "Eye of Ender", this.spriteData.src);
-                
-                // Auto-close after a very short time
-                setTimeout(() => {
-                    if (this.dialogueSystem && this.dialogueSystem.isDialogueOpen()) {
-                        this.dialogueSystem.closeDialogue();
-                    }
-                }, 800);
-            }
-            
-            // Check for game completion
-            if (self.eyesCollected >= 12) {
-                // Handle game completion logic
-                self.gameCompleted = true;
-                
-                if (self.timerInterval) {
-                    clearInterval(self.timerInterval);
-                    
-                    // Calculate and format final time
-                    const finalTime = self.currentTime;
-                    const formattedTime = self.formatTime(finalTime);
-                    
-                    // Update timer display
-                    const timerDisplay = document.getElementById('game-timer');
-                    if (timerDisplay) {
-                        timerDisplay.innerHTML = `<span style="color: #00FFFF">COMPLETED: ${formattedTime}</span>`;
-                    }
-                    
-                    // Check for new record
-                    const bestTime = localStorage.getItem('bestTime');
-                    let isNewRecord = false;
-                    
-                    if (!bestTime || finalTime < parseFloat(bestTime)) {
-                        localStorage.setItem('bestTime', finalTime.toString());
-                        isNewRecord = true;
-                        
-                        // Show new record animation
-                        if (timerDisplay) {
-                            timerDisplay.innerHTML = `<span style="color: gold">NEW RECORD! ${formattedTime}</span>`;
-                            setTimeout(() => {
-                                timerDisplay.innerHTML = `<span style="color: #00FFFF">COMPLETED: ${formattedTime}</span>`;
-                            }, 3000);
-                        }
-                    }
-                    
-                    // Update UI with completion message
-                    self.showCompletionMessage(isNewRecord);
-                    
-                    // Create the portal with slight delay
-                    setTimeout(() => {
-                        self.createDOMPortal();
-                    }, 1000);
-                }
-            }
-        }
-    };
-    */
     this.classes = [
-      //{ class: BackgroundParallax, data: image_data_parallax },  // Add parallax background first
       { class: GamEnvBackground, data: image_data_end },         // Then regular background
       { class: Player, data: sprite_data_sigma },
-      //{ class: Npc, data: sprite_data_endship },
-      //{ class: Collectible, data: sprite_data_eye },
+      { class: Npc, data: sprite_data_king},
       { class: Player, data: sprite_data_alex },
-      //{ class: Enemy, data: sprite_data_enemy }
     ];
     
     if (this.gameEnv) {
